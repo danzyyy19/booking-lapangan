@@ -1,0 +1,111 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  ADMIN
+  STAFF
+  CUSTOMER
+}
+
+enum BookingStatus {
+  PENDING
+  CONFIRMED
+  CANCELLED
+  COMPLETED
+}
+
+enum PaymentStatus {
+  PENDING
+  VERIFIED
+  REJECTED
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String
+  name      String
+  phone     String?
+  role      Role     @default(CUSTOMER)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  bookings          Booking[]
+  verifiedPayments  Payment[] @relation("VerifiedBy")
+
+  @@map("users")
+}
+
+model Field {
+  id          String   @id @default(uuid())
+  name        String
+  type        String   
+  size        String   
+  description String?  @db.Text
+  benefits    String?  @db.Text 
+  pricePerHour Decimal @db.Decimal(10, 2)
+  openTime    String   @default("08:00")
+  closeTime   String   @default("22:00")
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  images   FieldImage[]
+  bookings Booking[]
+
+  @@map("fields")
+}
+
+model FieldImage {
+  id       String @id @default(uuid())
+  fieldId  String
+  imageUrl String
+  order    Int    @default(0)
+
+  field Field @relation(fields: [fieldId], references: [id], onDelete: Cascade)
+
+  @@map("field_images")
+}
+
+model Booking {
+  id            String        @id @default(uuid())
+  customerId    String
+  fieldId       String
+  bookingDate   DateTime      @db.Date
+  startTime     String        
+  durationHours Int
+  endTime       String        
+  totalPrice    Decimal       @db.Decimal(10, 2)
+  status        BookingStatus @default(PENDING)
+  notes         String?       @db.Text
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  customer User    @relation(fields: [customerId], references: [id])
+  field    Field   @relation(fields: [fieldId], references: [id])
+  payment  Payment?
+
+  @@map("bookings")
+}
+
+model Payment {
+  id            String        @id @default(uuid())
+  bookingId     String        @unique
+  proofImageUrl String?
+  status        PaymentStatus @default(PENDING)
+  verifiedById  String?
+  notes         String?       @db.Text
+  createdAt     DateTime      @default(now())
+  verifiedAt    DateTime?
+
+  booking    Booking @relation(fields: [bookingId], references: [id], onDelete: Cascade)
+  verifiedBy User?   @relation("VerifiedBy", fields: [verifiedById], references: [id])
+
+  @@map("payments")
+}
