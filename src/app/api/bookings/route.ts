@@ -131,7 +131,7 @@ export async function POST(request: NextRequest) {
             where: {
                 fieldId,
                 bookingDate: new Date(bookingDate),
-                status: { in: ['PENDING', 'CONFIRMED'] },
+                status: 'CONFIRMED',
             },
         })
 

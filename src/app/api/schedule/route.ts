@@ -33,7 +33,7 @@ export async function GET(request: NextRequest) {
             where: {
                 fieldId,
                 bookingDate: new Date(date),
-                status: { in: ['PENDING', 'CONFIRMED'] },
+                status: 'CONFIRMED',
             },
             select: {
                 id: true,
