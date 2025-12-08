@@ -1,7 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { writeFile, mkdir } from 'fs/promises'
-import path from 'path'
-import { v4 as uuidv4 } from 'uuid'
+import { v2 as cloudinary } from 'cloudinary'
+
+// Configure Cloudinary
+cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET,
+})
 
 export async function POST(request: NextRequest) {
     try {
@@ -23,39 +28,29 @@ export async function POST(request: NextRequest) {
             )
         }
 
-        // Validate file size (1MB)
-        if (file.size > 1024 * 1024) {
+        // Validate file size (2MB for Cloudinary - more generous)
+        if (file.size > 2 * 1024 * 1024) {
             return NextResponse.json(
-                { error: 'File size too large (max 1MB)' },
+                { error: 'File size too large (max 2MB)' },
                 { status: 400 }
             )
         }
 
+        // Convert file to base64
         const bytes = await file.arrayBuffer()
         const buffer = Buffer.from(bytes)
+        const base64 = buffer.toString('base64')
+        const dataURI = `data:${file.type};base64,${base64}`
 
-        // Create unique filename
-        const filename = `${uuidv4()}-${file.name.replace(/[^a-zA-Z0-9.]/g, '')}`
-
-        // Ensure directory exists
-        const uploadDir = path.join(process.cwd(), 'public', 'uploads')
-        try {
-            await mkdir(uploadDir, { recursive: true })
-        } catch (e) {
-            console.error('Error creating upload dir:', e)
-        }
-
-        const filepath = path.join(uploadDir, filename)
-
-        // Write file
-        await writeFile(filepath, buffer)
-
-        // Return URL
-        const url = `/uploads/${filename}`
+        // Upload to Cloudinary
+        const result = await cloudinary.uploader.upload(dataURI, {
+            folder: 'booking-lapangan',
+            resource_type: 'image',
+        })
 
         return NextResponse.json({
             success: true,
-            url: url
+            url: result.secure_url
         })
 
     } catch (error) {
