@@ -101,20 +101,23 @@ booking-lapangan-v2/
 ### 4.1 Use Case Diagram
 Diagram berikut menggambarkan interaksi antara aktor (Customer, Staff, Admin) dengan sistem.
 
-![Use Case Diagram](./Picture/usecase_diagram.png)
-*Gambar 4.1: Use Case Diagram Sistem Booking Lapangan*
+![Use Case Diagram](./Picture/gambar_4_1_usecase_diagram.png)
+
+**Gambar 4.1** Use Case Diagram Sistem Booking Lapangan - Menampilkan interaksi Customer (booking, bayar), Staff (verifikasi), dan Admin (kelola sistem)
 
 ### 4.2 Activity Diagram (Alur Booking)
 Diagram aktivitas menjelaskan alur proses pemesanan lapangan dari awal hingga selesai.
 
-![Activity Diagram](./Picture/activity_diagram.png)
-*Gambar 4.2: Activity Diagram Proses Booking*
+![Activity Diagram](./Picture/gambar_4_2_activity_diagram.png)
+
+**Gambar 4.2** Activity Diagram Proses Booking - Menampilkan alur dari login, pilih lapangan, pilih jadwal, bayar, hingga verifikasi
 
 ### 4.3 Class Diagram
 Diagram kelas menggambarkan struktur objek dan relasi antar class dalam sistem.
 
-![Class Diagram](./Picture/class_diagram.png)
-*Gambar 4.3: Class Diagram Sistem*
+![Class Diagram](./Picture/gambar_4_3_class_diagram.png)
+
+**Gambar 4.3** Class Diagram Sistem - Menampilkan class User, Field, Booking, Payment beserta atribut dan relasinya
 
 ---
 
@@ -122,8 +125,9 @@ Diagram kelas menggambarkan struktur objek dan relasi antar class dalam sistem.
 
 ### 5.1 Entity Relationship Diagram (ERD)
 
-![ERD Diagram](./Picture/erd_diagram.png)
-*Gambar 5.1: Entity Relationship Diagram*
+![ERD Diagram](./Picture/gambar_5_1_erd_diagram.png)
+
+**Gambar 5.1** Entity Relationship Diagram - Menampilkan relasi antar tabel users, fields, bookings, dan payments
 
 ### 5.2 Daftar Tabel
 
@@ -184,64 +188,121 @@ Akses: `http://localhost:3000`
 ### 7.1 Halaman Publik
 
 #### Landing Page
-![Menu Awal](./Picture/Menu%20awal.png)
+![Landing Page](./Picture/gambar_7_1_landing_page.png)
 
-#### Login & Register
-![Login](./Picture/login.png)
-![Register](./Picture/register.png)
+**Gambar 7.1** Landing Page - Halaman awal website yang menampilkan informasi umum dan tombol login/register
+
+#### Halaman Login
+![Login](./Picture/gambar_7_2_halaman_login.png)
+
+**Gambar 7.2** Halaman Login - Form login dengan input email dan password
+
+#### Halaman Register
+![Register](./Picture/gambar_7_3_halaman_register.png)
+
+**Gambar 7.3** Halaman Register - Form pendaftaran akun baru untuk customer
 
 ---
 
 ### 7.2 Dashboard Admin
 
-#### Dashboard
-![Dashboard Admin](./Picture/Admin/Dashboard.png)
+#### Dashboard Admin
+![Dashboard Admin](./Picture/gambar_7_4_dashboard_admin.png)
+
+**Gambar 7.4** Dashboard Admin - Menampilkan statistik booking, pendapatan, dan grafik
 
 #### Kelola Lapangan
-![Lapangan](./Picture/Admin/lapangan.png)
+![Kelola Lapangan](./Picture/gambar_7_5_kelola_lapangan.png)
 
-#### Kelola Booking
-![Booking](./Picture/Admin/booking.png)
-![Detail Booking](./Picture/Admin/detai%20booking.png)
-![Booking ACC](./Picture/Admin/booking%20acc.png)
+**Gambar 7.5** Halaman Kelola Lapangan - Daftar lapangan dengan opsi tambah, edit, dan hapus
 
-#### Jadwal
-![Jadwal](./Picture/Admin/jadwal%20booking%20jika%20sudah%20di%20acc.png)
+#### Daftar Booking
+![Daftar Booking](./Picture/gambar_7_6_daftar_booking.png)
+
+**Gambar 7.6** Halaman Daftar Booking - Tabel semua booking dengan filter dan status
+
+#### Detail Booking
+![Detail Booking](./Picture/gambar_7_7_detail_booking.png)
+
+**Gambar 7.7** Detail Booking - Informasi lengkap booking termasuk customer, lapangan, dan pembayaran
+
+#### Detail Booking Approved
+![Booking Approved](./Picture/gambar_7_8_booking_approved.png)
+
+**Gambar 7.8** Detail Booking Setelah Diapprove - Status booking berubah menjadi CONFIRMED
+
+#### Jadwal Lapangan Admin
+![Jadwal Admin](./Picture/gambar_7_9_jadwal_admin.png)
+
+**Gambar 7.9** Monitor Jadwal Lapangan - Tampilan grid jadwal harian dengan slot tersedia dan terboking
 
 #### Kelola Pengguna
-![Pengguna](./Picture/Admin/kelola%20pengguna.png)
+![Kelola Pengguna](./Picture/gambar_7_10_kelola_pengguna.png)
 
-#### Pembayaran
-![Pembayaran](./Picture/Admin/pembayaran.png)
-![Bukti Transfer](./Picture/Admin/contoh%20bukti%20transfer%20yang%20sdah%20di%20upload.png)
+**Gambar 7.10** Halaman Kelola Pengguna - Daftar user dengan opsi ubah role dan hapus
 
-#### Laporan
-![Laporan](./Picture/Admin/laporan.png)
+#### Daftar Pembayaran
+![Daftar Pembayaran](./Picture/gambar_7_11_daftar_pembayaran.png)
+
+**Gambar 7.11** Halaman Daftar Pembayaran - Tabel pembayaran dengan status verifikasi
+
+#### Bukti Transfer
+![Bukti Transfer](./Picture/gambar_7_12_bukti_transfer.png)
+
+**Gambar 7.12** Modal Bukti Transfer - Preview gambar bukti pembayaran yang diupload customer
+
+#### Laporan Pendapatan
+![Laporan](./Picture/gambar_7_13_laporan_pendapatan.png)
+
+**Gambar 7.13** Halaman Laporan - Rekap pendapatan per periode dengan grafik
 
 ---
 
 ### 7.3 Dashboard Staff
 
-![Dashboard Staff](./Picture/Staff/Dashboard.png)
+#### Dashboard Staff
+![Dashboard Staff](./Picture/gambar_7_14_dashboard_staff.png)
+
+**Gambar 7.14** Dashboard Staff - Tampilan ringkas jadwal hari ini dan booking yang perlu diverifikasi
 
 ---
 
 ### 7.4 Dashboard Customer
 
-#### Dashboard & Booking
-![Dashboard Customer](./Picture/customer/dashboard.png)
-![Buat Booking 1](./Picture/customer/buat%20booking%201.png)
-![Buat Booking 2](./Picture/customer/buat%20booking%202.png)
+#### Dashboard Customer
+![Dashboard Customer](./Picture/gambar_7_15_dashboard_customer.png)
 
-#### Riwayat & Detail
-![Booking Saya](./Picture/customer/booking%20saya.png)
-![Detail Booking](./Picture/customer/booking%20detail.png)
+**Gambar 7.15** Dashboard Customer - Menampilkan daftar lapangan tersedia dan booking terakhir
 
-#### Pembayaran
-![Upload Bukti](./Picture/customer/upload%20bukti.png)
+#### Form Booking - Pilih Lapangan
+![Form Booking 1](./Picture/gambar_7_16_form_booking_pilih_lapangan.png)
 
-#### Jadwal
-![Jadwal Pending](./Picture/customer/jadwal%20booking%20jika%20belum%20di%20acc.png)
+**Gambar 7.16** Form Booking Langkah 1 - Pilih lapangan yang ingin dipesan
+
+#### Form Booking - Pilih Jadwal
+![Form Booking 2](./Picture/gambar_7_17_form_booking_pilih_jadwal.png)
+
+**Gambar 7.17** Form Booking Langkah 2 - Pilih tanggal dan jam yang tersedia
+
+#### Riwayat Booking
+![Riwayat Booking](./Picture/gambar_7_18_riwayat_booking.png)
+
+**Gambar 7.18** Halaman Booking Saya - Daftar riwayat booking customer dengan status masing-masing
+
+#### Detail Booking Customer
+![Detail Booking Customer](./Picture/gambar_7_19_detail_booking_customer.png)
+
+**Gambar 7.19** Detail Booking Customer - Informasi booking dan tombol upload bukti pembayaran
+
+#### Upload Bukti Pembayaran
+![Upload Bukti](./Picture/gambar_7_20_upload_bukti.png)
+
+**Gambar 7.20** Modal Upload Bukti Bayar - Form upload gambar bukti transfer
+
+#### Jadwal Customer (Pending)
+![Jadwal Pending](./Picture/gambar_7_21_jadwal_pending.png)
+
+**Gambar 7.21** Jadwal Lapangan Customer - Menampilkan slot yang sudah dipesan (pending approval)
 
 ---
 
@@ -266,43 +327,44 @@ Akses: `http://localhost:3000`
 | 6 | Booking bentrok | Jam sudah terisi | Ditolak | ✅ |
 | 7 | Booking di luar jam | Jam tutup | Tidak bisa pilih | ✅ |
 | 8 | Cancel booking | Klik cancel | Status CANCELLED | ✅ |
+| 9 | Booking jam terlewat | Jam sudah lewat | Ditolak | ✅ |
 
 #### Pembayaran
 
 | No | Skenario | Input | Hasil Harapan | Status |
 |----|----------|-------|---------------|--------|
-| 9 | Upload bukti | File JPG/PNG | Tersimpan | ✅ |
-| 10 | Upload invalid | File PDF | Ditolak | ✅ |
-| 11 | Approve payment | Klik approve | Status VERIFIED | ✅ |
-| 12 | Reject payment | Klik reject | Status REJECTED | ✅ |
+| 10 | Upload bukti | File JPG/PNG | Tersimpan | ✅ |
+| 11 | Upload invalid | File PDF | Ditolak | ✅ |
+| 12 | Approve payment | Klik approve | Status VERIFIED | ✅ |
+| 13 | Reject payment | Klik reject | Status REJECTED | ✅ |
 
 #### CRUD Lapangan (Admin)
 
 | No | Skenario | Input | Hasil Harapan | Status |
 |----|----------|-------|---------------|--------|
-| 13 | Tambah lapangan | Data valid | Data tersimpan | ✅ |
-| 14 | Edit lapangan | Ubah harga | Data terupdate | ✅ |
-| 15 | Hapus lapangan | Klik delete | Data terhapus | ✅ |
-| 16 | Nonaktifkan | Toggle off | Tersembunyi | ✅ |
+| 14 | Tambah lapangan | Data valid | Data tersimpan | ✅ |
+| 15 | Edit lapangan | Ubah harga | Data terupdate | ✅ |
+| 16 | Hapus lapangan | Klik delete | Data terhapus | ✅ |
+| 17 | Nonaktifkan | Toggle off | Tersembunyi | ✅ |
 
 #### Keamanan
 
 | No | Skenario | Input | Hasil Harapan | Status |
 |----|----------|-------|---------------|--------|
-| 17 | Akses tanpa login | URL /admin | Redirect login | ✅ |
-| 18 | Customer ke admin | URL /admin | Access denied | ✅ |
-| 19 | Staff ke CRUD | URL /admin/fields | Access denied | ✅ |
+| 18 | Akses tanpa login | URL /admin | Redirect login | ✅ |
+| 19 | Customer ke admin | URL /admin | Access denied | ✅ |
+| 20 | Staff ke CRUD | URL /admin/fields | Access denied | ✅ |
 
 ### 8.2 Ringkasan
 
 | Kategori | Total | Passed | Persentase |
 |----------|-------|--------|------------|
 | Autentikasi | 4 | 4 | 100% |
-| Booking | 4 | 4 | 100% |
+| Booking | 5 | 5 | 100% |
 | Pembayaran | 4 | 4 | 100% |
 | CRUD | 4 | 4 | 100% |
 | Keamanan | 3 | 3 | 100% |
-| **TOTAL** | **19** | **19** | **100%** |
+| **TOTAL** | **20** | **20** | **100%** |
 
 ---
 
@@ -331,14 +393,13 @@ Akses: `http://localhost:3000`
 | GET | `/api/bookings` | List booking |
 | POST | `/api/bookings` | Buat booking |
 | PUT | `/api/bookings/[id]` | Update status |
-| GET | `/api/bookings/check-availability` | Cek jadwal |
+| GET | `/api/schedule` | Cek jadwal lapangan |
 
 ### Payments
 | Method | Endpoint | Deskripsi |
 |--------|----------|-----------|
 | GET | `/api/payments` | List pembayaran |
-| POST | `/api/payments/upload` | Upload bukti |
-| PUT | `/api/payments/[id]/verify` | Verifikasi |
+| PUT | `/api/payments/[id]` | Upload bukti / Verifikasi |
 
 ### Users
 | Method | Endpoint | Deskripsi |
@@ -370,6 +431,40 @@ Setelah `npm run db:seed`:
 | `npm run db:push` | Push schema ke DB |
 | `npm run db:seed` | Seed data awal |
 | `npm run db:studio` | Prisma Studio GUI |
+
+---
+
+## Daftar Nama File Gambar
+
+Silakan rename file gambar sesuai tabel berikut:
+
+| No | Nama File Baru | Caption | File Lama |
+|----|----------------|---------|-----------|
+| 4.1 | `gambar_4_1_usecase_diagram.png` | Use Case Diagram Sistem Booking Lapangan | `usecase_diagram.png` |
+| 4.2 | `gambar_4_2_activity_diagram.png` | Activity Diagram Proses Booking | `activity_diagram.png` |
+| 4.3 | `gambar_4_3_class_diagram.png` | Class Diagram Sistem | `class_diagram.png` |
+| 5.1 | `gambar_5_1_erd_diagram.png` | Entity Relationship Diagram | `erd_diagram.png` |
+| 7.1 | `gambar_7_1_landing_page.png` | Landing Page | `Menu awal.png` |
+| 7.2 | `gambar_7_2_halaman_login.png` | Halaman Login | `login.png` |
+| 7.3 | `gambar_7_3_halaman_register.png` | Halaman Register | `register.png` |
+| 7.4 | `gambar_7_4_dashboard_admin.png` | Dashboard Admin | `Admin/Dashboard.png` |
+| 7.5 | `gambar_7_5_kelola_lapangan.png` | Halaman Kelola Lapangan | `Admin/lapangan.png` |
+| 7.6 | `gambar_7_6_daftar_booking.png` | Halaman Daftar Booking | `Admin/booking.png` |
+| 7.7 | `gambar_7_7_detail_booking.png` | Detail Booking | `Admin/detai booking.png` |
+| 7.8 | `gambar_7_8_booking_approved.png` | Detail Booking Setelah Diapprove | `Admin/booking acc.png` |
+| 7.9 | `gambar_7_9_jadwal_admin.png` | Monitor Jadwal Lapangan | `Admin/jadwal booking jika sudah di acc.png` |
+| 7.10 | `gambar_7_10_kelola_pengguna.png` | Halaman Kelola Pengguna | `Admin/kelola pengguna.png` |
+| 7.11 | `gambar_7_11_daftar_pembayaran.png` | Halaman Daftar Pembayaran | `Admin/pembayaran.png` |
+| 7.12 | `gambar_7_12_bukti_transfer.png` | Modal Bukti Transfer | `Admin/contoh bukti transfer yang sdah di upload.png` |
+| 7.13 | `gambar_7_13_laporan_pendapatan.png` | Halaman Laporan | `Admin/laporan.png` |
+| 7.14 | `gambar_7_14_dashboard_staff.png` | Dashboard Staff | `Staff/Dashboard.png` |
+| 7.15 | `gambar_7_15_dashboard_customer.png` | Dashboard Customer | `customer/dashboard.png` |
+| 7.16 | `gambar_7_16_form_booking_pilih_lapangan.png` | Form Booking Langkah 1 | `customer/buat booking 1.png` |
+| 7.17 | `gambar_7_17_form_booking_pilih_jadwal.png` | Form Booking Langkah 2 | `customer/buat booking 2.png` |
+| 7.18 | `gambar_7_18_riwayat_booking.png` | Halaman Booking Saya | `customer/booking saya.png` |
+| 7.19 | `gambar_7_19_detail_booking_customer.png` | Detail Booking Customer | `customer/booking detail.png` |
+| 7.20 | `gambar_7_20_upload_bukti.png` | Modal Upload Bukti Bayar | `customer/upload bukti.png` |
+| 7.21 | `gambar_7_21_jadwal_pending.png` | Jadwal Lapangan Customer | `customer/jadwal booking jika belum di acc.png` |
 
 ---
 
