@@ -123,7 +123,7 @@ export default function AdminSchedulePage() {
     }
 
     const selectedFieldData = fields.find(f => f.id === selectedField)
-    const bookedSlots = schedule.filter(s => !s.available).length
+    const bookedSlots = schedule.filter(s => !s.available && s.booking).length  // Only slots with actual bookings
     const availableSlots = schedule.filter(s => s.available).length
 
     return (
