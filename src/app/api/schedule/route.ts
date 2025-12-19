@@ -52,19 +52,32 @@ export async function GET(request: NextRequest) {
         // Generate time slots
         const allSlots = generateTimeSlots(field.openTime, field.closeTime)
 
+        // Check if booking date is today (for filtering past time slots)
+        const now = new Date()
+        const todayStr = now.toISOString().split('T')[0]
+        const isToday = todayStr === date
+        const currentHour = now.getHours()
+        const currentMinute = now.getMinutes()
+        const currentTotalMinutes = currentHour * 60 + currentMinute
+
         // Mark slots as available or booked
         const schedule = allSlots.map((time) => {
+            // Check if this time slot is in the past (only for today)
+            const [slotHour, slotMin] = time.split(':').map(Number)
+            const slotTotalMinutes = slotHour * 60 + slotMin
+            const isPast = isToday && slotTotalMinutes <= currentTotalMinutes
+
             const booking = bookings.find((b: typeof bookings[number]) => {
                 const startMinutes = parseInt(b.startTime.split(':')[0]) * 60 + parseInt(b.startTime.split(':')[1])
                 const endMinutes = parseInt(b.endTime.split(':')[0]) * 60 + parseInt(b.endTime.split(':')[1])
-                const slotMinutes = parseInt(time.split(':')[0]) * 60 + parseInt(time.split(':')[1])
 
-                return slotMinutes >= startMinutes && slotMinutes < endMinutes
+                return slotTotalMinutes >= startMinutes && slotTotalMinutes < endMinutes
             })
 
             return {
                 time,
-                available: !booking,
+                available: !booking && !isPast,
+                isPast,
                 booking: booking ? {
                     id: booking.id,
                     status: booking.status,

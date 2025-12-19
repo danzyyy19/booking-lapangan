@@ -31,6 +31,7 @@ interface Field {
 interface TimeSlot {
     time: string
     available: boolean
+    isPast?: boolean
     booking?: {
         id: string
         status: string
@@ -343,11 +344,17 @@ export default function BookingPage() {
                                                                 ? 'var(--accent)'
                                                                 : slot.available
                                                                     ? 'var(--bg-secondary)'
-                                                                    : 'var(--error)',
-                                                            color: selectedTime === slot.time || !slot.available
+                                                                    : slot.isPast
+                                                                        ? 'var(--bg-tertiary)'
+                                                                        : 'var(--error)',
+                                                            color: selectedTime === slot.time
                                                                 ? 'white'
-                                                                : 'var(--text-primary)',
-                                                            opacity: !slot.available ? 0.5 : 1,
+                                                                : slot.isPast
+                                                                    ? 'var(--text-muted)'
+                                                                    : !slot.available
+                                                                        ? 'white'
+                                                                        : 'var(--text-primary)',
+                                                            opacity: !slot.available ? 0.6 : 1,
                                                             cursor: slot.available ? 'pointer' : 'not-allowed',
                                                         }}
                                                     >
@@ -356,13 +363,17 @@ export default function BookingPage() {
                                                 ))}
                                             </div>
                                         )}
-                                        <div className="flex items-center gap-4 mt-3 text-xs">
+                                        <div className="flex items-center gap-4 mt-3 text-xs flex-wrap">
                                             <div className="flex items-center gap-1">
                                                 <div className="w-3 h-3 rounded" style={{ backgroundColor: 'var(--bg-secondary)' }} />
                                                 <span style={{ color: 'var(--text-muted)' }}>Tersedia</span>
                                             </div>
                                             <div className="flex items-center gap-1">
-                                                <div className="w-3 h-3 rounded" style={{ backgroundColor: 'var(--error)', opacity: 0.5 }} />
+                                                <div className="w-3 h-3 rounded" style={{ backgroundColor: 'var(--bg-tertiary)', opacity: 0.6 }} />
+                                                <span style={{ color: 'var(--text-muted)' }}>Terlewat</span>
+                                            </div>
+                                            <div className="flex items-center gap-1">
+                                                <div className="w-3 h-3 rounded" style={{ backgroundColor: 'var(--error)', opacity: 0.6 }} />
                                                 <span style={{ color: 'var(--text-muted)' }}>Terboking</span>
                                             </div>
                                         </div>

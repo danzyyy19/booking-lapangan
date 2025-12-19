@@ -117,6 +117,31 @@ export async function PUT(request: NextRequest, { params }: RouteParams) {
             },
         })
 
+        // Sync payment status when booking status changes
+        if (booking.payment) {
+            if (status === 'CONFIRMED') {
+                // When booking is confirmed, also verify the payment
+                await prisma.payment.update({
+                    where: { id: booking.payment.id },
+                    data: {
+                        status: 'VERIFIED',
+                        verifiedById: user.userId,
+                        verifiedAt: new Date(),
+                    },
+                })
+            } else if (status === 'CANCELLED') {
+                // When booking is cancelled, also reject the payment
+                await prisma.payment.update({
+                    where: { id: booking.payment.id },
+                    data: {
+                        status: 'REJECTED',
+                        verifiedById: user.userId,
+                        verifiedAt: new Date(),
+                    },
+                })
+            }
+        }
+
         return NextResponse.json({
             message: 'Status booking berhasil diperbarui',
             booking,
