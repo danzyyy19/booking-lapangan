@@ -312,6 +312,34 @@ export default function CustomerBookingDetailPage() {
                                 {getPaymentBadge(booking.payment?.status)}
                             </div>
 
+                            {/* Bank Transfer Information */}
+                            {booking.payment?.status !== 'VERIFIED' && (
+                                <div className="mt-3 p-3 rounded-lg border-2" style={{
+                                    backgroundColor: 'var(--accent-light)',
+                                    borderColor: 'var(--accent)',
+                                    borderStyle: 'dashed'
+                                }}>
+                                    <div className="flex items-start gap-2 mb-2">
+                                        <CreditCard className="w-4 h-4 mt-0.5" style={{ color: 'var(--accent)' }} />
+                                        <p className="text-sm font-semibold" style={{ color: 'var(--accent)' }}>Informasi Transfer</p>
+                                    </div>
+                                    <div className="space-y-1 text-sm" style={{ color: 'var(--text-primary)' }}>
+                                        <div className="flex justify-between">
+                                            <span style={{ color: 'var(--text-muted)' }}>Bank:</span>
+                                            <span className="font-semibold">BCA</span>
+                                        </div>
+                                        <div className="flex justify-between">
+                                            <span style={{ color: 'var(--text-muted)' }}>Nama:</span>
+                                            <span className="font-semibold">Dani</span>
+                                        </div>
+                                        <div className="flex justify-between">
+                                            <span style={{ color: 'var(--text-muted)' }}>No. Rekening:</span>
+                                            <span className="font-mono font-bold" style={{ color: 'var(--accent)' }}>781231243</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
+
                             {booking.payment?.proofImageUrl ? (
                                 <div className="mt-3 p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
                                     <p className="text-xs mb-2" style={{ color: 'var(--text-muted)' }}>Bukti Pembayaran:</p>

@@ -71,6 +71,9 @@ export default function AdminSchedulePage() {
 
     useEffect(() => {
         if (selectedField) {
+            // Clear previous data immediately to prevent showing stale bookings
+            setBookings([])
+            setSchedule([])
             fetchSchedule()
             fetchBookings()
         }
