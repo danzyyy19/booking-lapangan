@@ -345,17 +345,18 @@ export default function BookingPage() {
                                                                 : slot.available
                                                                     ? 'var(--bg-secondary)'
                                                                     : slot.isPast
-                                                                        ? 'var(--bg-tertiary)'
-                                                                        : 'var(--error)',
+                                                                        ? 'rgba(128, 128, 128, 0.2)'
+                                                                        : 'rgba(239, 68, 68, 0.3)',
                                                             color: selectedTime === slot.time
                                                                 ? 'white'
                                                                 : slot.isPast
-                                                                    ? 'var(--text-muted)'
+                                                                    ? 'rgba(128, 128, 128, 0.6)'
                                                                     : !slot.available
-                                                                        ? 'white'
+                                                                        ? 'rgba(239, 68, 68, 0.9)'
                                                                         : 'var(--text-primary)',
-                                                            opacity: !slot.available ? 0.6 : 1,
+                                                            opacity: !slot.available ? 0.7 : 1,
                                                             cursor: slot.available ? 'pointer' : 'not-allowed',
+                                                            textDecoration: slot.isPast ? 'line-through' : 'none',
                                                         }}
                                                     >
                                                         {slot.time}
@@ -369,11 +370,11 @@ export default function BookingPage() {
                                                 <span style={{ color: 'var(--text-muted)' }}>Tersedia</span>
                                             </div>
                                             <div className="flex items-center gap-1">
-                                                <div className="w-3 h-3 rounded" style={{ backgroundColor: 'var(--bg-tertiary)', opacity: 0.6 }} />
+                                                <div className="w-3 h-3 rounded" style={{ backgroundColor: 'rgba(128, 128, 128, 0.3)' }} />
                                                 <span style={{ color: 'var(--text-muted)' }}>Terlewat</span>
                                             </div>
                                             <div className="flex items-center gap-1">
-                                                <div className="w-3 h-3 rounded" style={{ backgroundColor: 'var(--error)', opacity: 0.6 }} />
+                                                <div className="w-3 h-3 rounded" style={{ backgroundColor: 'rgba(239, 68, 68, 0.4)' }} />
                                                 <span style={{ color: 'var(--text-muted)' }}>Terboking</span>
                                             </div>
                                         </div>
