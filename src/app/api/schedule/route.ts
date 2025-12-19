@@ -53,12 +53,19 @@ export async function GET(request: NextRequest) {
         const allSlots = generateTimeSlots(field.openTime, field.closeTime)
 
         // Check if booking date is today (for filtering past time slots)
+        // Convert UTC to Indonesian time (WIB = UTC+7)
         const now = new Date()
-        const todayStr = now.toISOString().split('T')[0]
+        const wibOffset = 7 * 60 // WIB is UTC+7
+        const utcMinutes = now.getUTCHours() * 60 + now.getUTCMinutes()
+        const wibMinutes = utcMinutes + wibOffset
+        const wibHour = Math.floor(wibMinutes / 60) % 24
+        const wibMinute = wibMinutes % 60
+
+        // Get today's date in WIB
+        const wibDate = new Date(now.getTime() + wibOffset * 60 * 1000)
+        const todayStr = wibDate.toISOString().split('T')[0]
         const isToday = todayStr === date
-        const currentHour = now.getHours()
-        const currentMinute = now.getMinutes()
-        const currentTotalMinutes = currentHour * 60 + currentMinute
+        const currentTotalMinutes = wibHour * 60 + wibMinute
 
         // Mark slots as available or booked
         const schedule = allSlots.map((time) => {

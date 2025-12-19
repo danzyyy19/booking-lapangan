@@ -127,14 +127,23 @@ export async function POST(request: NextRequest) {
         }
 
         // Validate booking is not for a past time slot (for today only)
+        // Convert UTC to Indonesian time (WIB = UTC+7)
         const now = new Date()
-        const todayStr = now.toISOString().split('T')[0]
+        const wibOffset = 7 * 60 // WIB is UTC+7
+        const utcMinutes = now.getUTCHours() * 60 + now.getUTCMinutes()
+        const wibMinutes = utcMinutes + wibOffset
+        const wibHour = Math.floor(wibMinutes / 60) % 24
+        const wibMinute = wibMinutes % 60
+
+        // Get today's date in WIB
+        const wibDate = new Date(now.getTime() + wibOffset * 60 * 1000)
+        const todayStr = wibDate.toISOString().split('T')[0]
         const bookingDateStr = new Date(bookingDate).toISOString().split('T')[0]
 
         if (bookingDateStr === todayStr) {
             const [startHour, startMin] = startTime.split(':').map(Number)
             const startTotalMinutes = startHour * 60 + startMin
-            const currentTotalMinutes = now.getHours() * 60 + now.getMinutes()
+            const currentTotalMinutes = wibHour * 60 + wibMinute
 
             if (startTotalMinutes <= currentTotalMinutes) {
                 return NextResponse.json(
