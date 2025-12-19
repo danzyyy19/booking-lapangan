@@ -36,7 +36,7 @@ interface Booking {
     startTime: string
     endTime: string
     status: string
-    user: { name: string }
+    customer: { name: string }
     field: { name: string }
     totalPrice: number
 }
@@ -270,7 +270,7 @@ export default function StaffSchedulePage() {
                                         <div key={booking.id} className="p-3">
                                             <div className="flex items-center justify-between">
                                                 <div>
-                                                    <p className="font-medium text-sm" style={{ color: 'var(--text-primary)' }}>{booking.user?.name || 'N/A'}</p>
+                                                    <p className="font-medium text-sm" style={{ color: 'var(--text-primary)' }}>{booking.customer?.name || 'N/A'}</p>
                                                     <p className="text-xs" style={{ color: 'var(--text-muted)' }}>
                                                         <Clock className="w-3 h-3 inline mr-1" />
                                                         {booking.startTime} - {booking.endTime}

@@ -126,6 +126,24 @@ export async function POST(request: NextRequest) {
             )
         }
 
+        // Validate booking is not for a past time slot (for today only)
+        const now = new Date()
+        const todayStr = now.toISOString().split('T')[0]
+        const bookingDateStr = new Date(bookingDate).toISOString().split('T')[0]
+
+        if (bookingDateStr === todayStr) {
+            const [startHour, startMin] = startTime.split(':').map(Number)
+            const startTotalMinutes = startHour * 60 + startMin
+            const currentTotalMinutes = now.getHours() * 60 + now.getMinutes()
+
+            if (startTotalMinutes <= currentTotalMinutes) {
+                return NextResponse.json(
+                    { error: 'Tidak dapat booking jam yang sudah terlewat' },
+                    { status: 400 }
+                )
+            }
+        }
+
         // Check for booking conflicts
         const existingBookings = await prisma.booking.findMany({
             where: {
