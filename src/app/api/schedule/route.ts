@@ -29,19 +29,14 @@ export async function GET(request: NextRequest) {
         }
 
         // Get existing bookings for the date
-        // Use date range to properly filter by calendar date
-        const startOfDay = new Date(date)
-        startOfDay.setHours(0, 0, 0, 0)
-        const endOfDay = new Date(date)
-        endOfDay.setHours(23, 59, 59, 999)
+        // Use plain date for comparison (MySQL stores as DATE type without time)
+        const bookingDate = new Date(date)
+        bookingDate.setHours(0, 0, 0, 0)
 
         const bookings = await prisma.booking.findMany({
             where: {
                 fieldId,
-                bookingDate: {
-                    gte: startOfDay,
-                    lte: endOfDay
-                },
+                bookingDate: bookingDate,
                 status: 'CONFIRMED',
             },
             select: {
